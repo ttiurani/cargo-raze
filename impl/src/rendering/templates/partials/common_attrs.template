@@ -40,12 +40,16 @@
         {%- endfor %}
     },
     {%- endif %}
+    {%- if crate.raze_settings.override_rustc_flags %}
+    rustc_flags = {{crate.raze_settings.override_rustc_flags}},
+    {%- else %}
     rustc_flags = [
         "--cap-lints=allow",
         {%- for flag in crate.raze_settings.additional_flags %}
         "{{flag}}",
         {%- endfor %}
     ],
+    {%- endif %}
     tags = [
         "cargo-raze",
         "crate-name={{ target_name_original }}",
