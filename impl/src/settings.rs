@@ -159,6 +159,10 @@ pub struct CrateSettings {
   #[serde(default)]
   pub additional_flags: Vec<String>,
 
+  /// Escape hatch for override value for rustc_flags, make sure to include "--cap-lints=allow"
+  #[serde(default)]
+  pub override_rustc_flags: Option<String>,
+
   /// Environment variables to be added to the crate compilation process.
   #[serde(default)]
   pub additional_env: BTreeMap<String, String>,
@@ -274,6 +278,7 @@ impl Default for CrateSettings {
       build_data_dependencies: Vec::new(),
       buildrs_additional_deps: Vec::new(),
       buildrs_additional_environment_variables: BTreeMap::new(),
+      override_rustc_flags: None,
       patch_args: Vec::new(),
       patch_cmds: Vec::new(),
       patch_cmds_win: Vec::new(),
