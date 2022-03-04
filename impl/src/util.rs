@@ -39,6 +39,7 @@ static SUPPORTED_PLATFORM_TRIPLES: &[&str] = &[
   "aarch64-apple-ios",
   "aarch64-linux-android",
   "aarch64-unknown-linux-gnu",
+  "arm-linux-androideabi",
   "arm-unknown-linux-gnueabi",
   "i686-linux-android",
   "i686-unknown-freebsd",
