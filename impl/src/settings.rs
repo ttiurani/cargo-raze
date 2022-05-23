@@ -149,6 +149,10 @@ pub struct CrateSettings {
   #[serde(default)]
   pub skipped_deps: Vec<String>,
 
+  /// Escape hatch for override value for deps
+  #[serde(default)]
+  pub override_deps: Option<String>,
+
   /// Library targets that should be aliased in the root BUILD file.
   ///
   /// This is useful to facilitate using binary utility crates, such as bindgen, as part of genrules.
@@ -268,6 +272,7 @@ impl Default for CrateSettings {
     Self {
       additional_deps: Vec::new(),
       skipped_deps: Vec::new(),
+      override_deps: None,
       extra_aliased_targets: Vec::new(),
       additional_flags: Vec::new(),
       additional_env: BTreeMap::new(),

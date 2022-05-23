@@ -17,6 +17,9 @@ rust_binary(
     {%- set_global deps = deps | concat(with=dependency) %}
 {%- endfor %}
     # buildifier: leave-alone{# TODO: https://github.com/google/cargo-raze/issues/348 #}
+    {%- if crate.raze_settings.override_deps %}
+    deps = {{crate.raze_settings.override_deps}},
+    {%- else %}
     deps = [
         {%- for dep in deps | sort %}
         "{{ dep }}",
@@ -25,5 +28,6 @@ rust_binary(
     {%- if crate.targeted_deps %} 
     {%- include "templates/partials/targeted_dependencies.template" -%},
     {%- else -%},
+    {%- endif %}
     {%- endif %}
 )
